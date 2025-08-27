@@ -1,0 +1,20 @@
+# REQUIRED
+project_id    = "your-project-id"
+region        = "us-central1"
+
+github_owner  = "your-github-user-or-org"
+github_repo   = "your-repo-name"
+
+# OPTIONAL
+ar_repo       = "insight-agent"
+service_name  = "insight-agent"
+
+# To allow specific SAs to invoke (leave [] to keep private to deployers)
+invoker_members = [
+  # "serviceAccount:tester@your-project-id.iam.gserviceaccount.com"
+]
+
+# If you want Terraform to create a project (requires org/billing perms)
+create_project   = false
+org_id           = null        # "123456789012"
+billing_account  = null        # "AAAAAA-BBBBBB-CCCCCC"
