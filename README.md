@@ -50,7 +50,8 @@ Deployed to **Cloud Run**, images stored in **Artifact Registry**, all infra in 
 make test
 make build
 make run
-# curl localhost:8080/analyze -d '{"text":"hello world"}' -H 'content-type: application/json'
+
+curl localhost:8080/analyze -d '{"text":"hello world"}' -H 'content-type: application/json'
 
 @@Extending Security (optional)
 
@@ -62,4 +63,5 @@ invoker_members = [
 
 
 - For internal-only network access, place Cloud Run behind a regional internal HTTP(S) load balancer with a Serverless NEG (adds LB resources, certs, and subnet). The current setup uses IAM auth to ensure the service is not public.
+
 
