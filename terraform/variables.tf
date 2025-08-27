@@ -9,6 +9,12 @@ variable "region" {
   default     = "us-central1"
 }
 
+variable "zone" {
+  type        = string
+  description = "Zone within the region (e.g., us-central1-a)."
+  default     = "us-central1-a"
+}
+
 variable "ar_repo" {
   type        = string
   description = "Artifact Registry repo id."
