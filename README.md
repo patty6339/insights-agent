@@ -63,4 +63,3 @@ invoker_members = [
 
 - For internal-only network access, place Cloud Run behind a regional internal HTTP(S) load balancer with a Serverless NEG (adds LB resources, certs, and subnet). The current setup uses IAM auth to ensure the service is not public.
 
-This one is the real one 
