@@ -13,12 +13,13 @@ resource "google_iam_workload_identity_pool_provider" "github_provider" {
   display_name                       = "GitHub Provider"
   description                        = "OIDC from GitHub Actions"
   attribute_mapping = {
-    "google.subject"   = "assertion.sub"
-    "attribute.actor"  = "assertion.actor"
-    "attribute.aud"    = "assertion.aud"
+    "google.subject"       = "assertion.sub"
+    "attribute.actor"      = "assertion.actor"
+    "attribute.aud"        = "assertion.aud"
     "attribute.repository" = "assertion.repository"
-    "attribute.ref"    = "assertion.ref"
+    "attribute.ref"        = "assertion.ref"
   }
+  attribute_condition = "assertion.repository == '${var.github_owner}/${var.github_repo}' && assertion.ref == 'refs/heads/main'"
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
   }

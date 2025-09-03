@@ -18,19 +18,19 @@ variable "zone" {
 variable "ar_repo" {
   type        = string
   description = "Artifact Registry repo id."
-  default     = "insight-agent"
+  default     = "pat-insights"
 }
 
 variable "service_name" {
   type        = string
   description = "Cloud Run service name."
-  default     = "insight-agent"
+  default     = "pat-insights"
 }
 
 variable "image" {
   type        = string
   description = "Fully qualified container image (passed by CI)."
-  default     = "us-central1-docker.pkg.dev/placeholder/insight-agent/insight-agent:dev"
+  default     = "us-central1-docker.pkg.dev/placeholder/pat-insights/pat-insights:dev"
 }
 
 variable "invoker_members" {

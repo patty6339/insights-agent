@@ -6,8 +6,8 @@ github_owner  = "your-github-user-or-org"
 github_repo   = "your-repo-name"
 
 # OPTIONAL
-ar_repo       = "insight-agent"
-service_name  = "insight-agent"
+ar_repo       = "pat-insights"
+service_name  = "pat-insights"
 
 # To allow specific SAs to invoke (leave [] to keep private to deployers)
 invoker_members = [
