@@ -74,7 +74,7 @@ jobs:
       - name: Build & Push image
         id: build
         run: |
-          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/pat-insights:${{ github.sha }}"
+          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/insights-agent:${{ github.sha }}"
           echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT
           echo "Building image: $IMAGE"
           docker build -t "$IMAGE" .
