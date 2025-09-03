@@ -83,3 +83,8 @@ jobs:
             -var "image=${TF_VAR_image}" \
             -var "github_owner=${TF_VAR_github_owner}" \
             -var "github_repo=${TF_VAR_github_repo}"
+
+      - name: Verify deployment
+        run: |
+          SERVICE_URL=$(gcloud run services describe insight-agent --region=${{ secrets.GCP_REGION }} --format="value(status.url)")
+          echo "Service deployed at: $SERVICE_URL"
