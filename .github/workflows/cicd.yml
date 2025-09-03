@@ -69,7 +69,7 @@ jobs:
 
       - name: Configure Docker auth for Artifact Registry
         run: |
-          gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
+          gcloud auth configure-docker ${{ secrets.GCP_REGION }} docker.pkg.dev --quiet
 
       - name: Build & Push image
         id: build
