@@ -56,7 +56,6 @@ jobs:
           echo "GCP_ARTIFACT_REPO exists: ${{ secrets.GCP_ARTIFACT_REPO != '' }}"
 
       - name: Auth to GCP via OIDC
-        if: ${{ secrets.GCP_WIF_PROVIDER != '' && secrets.GCP_SA_EMAIL != '' }}
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
