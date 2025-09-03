@@ -18,6 +18,16 @@ class AnalyzeResponse(BaseModel):
     note: Optional[str] = None
 
 
+@app.get("/")
+def root():
+    return {"message": "Insight-Agent API", "docs": "/docs"}
+
+
+@app.get("/favicon.ico")
+def favicon():
+    return {"message": "No favicon"}
+
+
 @app.post("/analyze", response_model=AnalyzeResponse)
 def analyze(payload: AnalyzeRequest):
     try:
@@ -39,4 +49,4 @@ def analyze(payload: AnalyzeRequest):
 
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8080, log_level="info")
+    uvicorn.run(app, host="0.0.0.0", port=8080, log_level="info")
