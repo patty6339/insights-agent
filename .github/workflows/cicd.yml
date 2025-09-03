@@ -69,12 +69,18 @@ jobs:
 
       - name: Configure Docker auth for Artifact Registry
         run: |
-          gcloud auth configure-docker ${{ secrets.GCP_REGION }} docker.pkg.dev --quiet
+          gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
 
       - name: Build & Push image
         id: build
         run: |
-          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/insights-agent:${{ github.sha }}"
+          # Validate required secrets
+          if [ -z "${{ secrets.GCP_REGION }}" ] || [ -z "${{ secrets.GCP_PROJECT_ID }}" ] || [ -z "${{ secrets.GCP_ARTIFACT_REPO }}" ]; then
+            echo "Error: Missing required secrets"
+            exit 1
+          fi
+          
+          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/pat-insights:${{ github.sha }}"
           echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT
           echo "Building image: $IMAGE"
           docker build -t "$IMAGE" .
