@@ -9,3 +9,4 @@ terraform/terraform.tfvars
 *.tfstate.*
 deployment_to_gcp.md
 instructions.md
+project.md

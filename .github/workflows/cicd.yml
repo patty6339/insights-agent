@@ -46,7 +46,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Debug secrets
+        run: |
+          echo "Checking required secrets..."
+          echo "GCP_WIF_PROVIDER exists: ${{ secrets.GCP_WIF_PROVIDER != '' }}"
+          echo "GCP_SA_EMAIL exists: ${{ secrets.GCP_SA_EMAIL != '' }}"
+          echo "GCP_PROJECT_ID exists: ${{ secrets.GCP_PROJECT_ID != '' }}"
+          echo "GCP_REGION exists: ${{ secrets.GCP_REGION != '' }}"
+          echo "GCP_ARTIFACT_REPO exists: ${{ secrets.GCP_ARTIFACT_REPO != '' }}"
+
       - name: Auth to GCP via OIDC
+        if: ${{ secrets.GCP_WIF_PROVIDER != '' && secrets.GCP_SA_EMAIL != '' }}
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
@@ -64,7 +74,7 @@ jobs:
       - name: Build & Push image
         id: build
         run: |
-          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/insight-agent:${{ github.sha }}"
+          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REPO }}/pat-insights:${{ github.sha }}"
           echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT
           echo "Building image: $IMAGE"
           docker build -t "$IMAGE" .
@@ -96,7 +106,7 @@ jobs:
       - name: Verify deployment
         run: |
           echo "Verifying deployment..."
-          if SERVICE_URL=$(gcloud run services describe insight-agent --region=${{ secrets.GCP_REGION }} --format="value(status.url)" 2>/dev/null); then
+          if SERVICE_URL=$(gcloud run services describe pat-insights --region=${{ secrets.GCP_REGION }} --format="value(status.url)" 2>/dev/null); then
             echo "✅ Service deployed successfully at: $SERVICE_URL"
           else
             echo "⚠️ Could not retrieve service URL, but deployment may still be successful"

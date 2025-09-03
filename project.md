@@ -1,8 +1,8 @@
-# Insight-Agent Project Documentation
+# Pat-insights Project Documentation
 
 ## Project Overview
 
-**Insight-Agent** is a minimal FastAPI microservice that provides text analysis capabilities through a single REST endpoint. This MVP demonstrates modern cloud-native development practices with secure CI/CD deployment to Google Cloud Platform.
+**Pat-insights** is a minimal FastAPI microservice that provides text analysis capabilities through a single REST endpoint. This MVP demonstrates modern cloud-native development practices with secure CI/CD deployment to Google Cloud Platform.
 
 ## Core Functionality
 
@@ -35,7 +35,7 @@ curl -X POST "https://your-service-url/analyze" \
 ## Project Structure
 
 ```
-insight-agent/
+pat-insights/
 ├── app/                    # FastAPI application
 │   ├── main.py            # API implementation
 │   ├── requirements.txt   # Python dependencies

@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 import uvicorn
 
-app = FastAPI(title="Insight-Agent", version="0.1.0")
+app = FastAPI(title="Pat-insights", version="0.1.0")
 
 
 class AnalyzeRequest(BaseModel):
