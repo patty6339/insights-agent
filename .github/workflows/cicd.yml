@@ -58,8 +58,12 @@ jobs:
       - name: Auth to GCP via OIDC
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
-          service_account: ${{ secrets.GCP_SA_EMAIL }}
+          token_format: 'access_token'
+          workload_identity_provider: 'projects/pat-insights-471011/locations/global/workloadIdentityPools/github-wif/providers/github-oidc'
+          service_account: 'ci-deployer@pat-insights-471011.iam.gserviceaccount.com'
+  #     workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+  #     service_account: ${{ secrets.GCP_SA_EMAIL }}
+
 
       - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v2
